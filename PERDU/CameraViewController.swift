@@ -30,6 +30,7 @@ class CameraViewController: UIViewController {
     
 
     @IBOutlet weak var photoLibraryButton: UIButton!        // 포토 라이브러리
+    
     @IBOutlet weak var previewView: PreviewView!
     @IBOutlet weak var captureButton: UIButton!             // 버튼
     @IBOutlet weak var blurBGView: UIVisualEffectView!
@@ -57,6 +58,7 @@ class CameraViewController: UIViewController {
     }
     
     func setupUI() {
+        
         photoLibraryButton.layer.cornerRadius = 10      // 둥근 사각형
         photoLibraryButton.layer.masksToBounds = true   // 위에서 잘린 부분은 masking 해버린다.
         photoLibraryButton.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)       // #color liter 테두리 흰색
@@ -65,7 +67,7 @@ class CameraViewController: UIViewController {
         captureButton.layer.cornerRadius = captureButton.bounds.height / 2  // bounds: (0, 0, width, height) height를 가져와서 2로 나누면 동그랗게.
         captureButton.layer.masksToBounds = true
         
-        blurBGView.layer.cornerRadius = captureButton.bounds.height / 2  // bounds: (0, 0, width, height) height를 가져와서 2로 나누면 동그랗게.
+        blurBGView.layer.cornerRadius = blurBGView.bounds.height / 2  // bounds: (0, 0, width, height) height를 가져와서 2로 나누면 동그랗게.
         blurBGView.layer.masksToBounds = true
     }
     
@@ -131,11 +133,13 @@ class CameraViewController: UIViewController {
         // TODO: Update ICON
         switch position {
         case .front:
-            let image = #imageLiteral(resourceName: "ic_camera_front")
-            switchButton.setImage(image, for: .normal)
+            //let image = #imageLiteral(resourceName: "ic_camera_front")
+            //switchButton.setImage(image, for: .normal)
+            print("front")
         case .back:
-            let image = #imageLiteral(resourceName: "ic_camera_rear")
-            switchButton.setImage(image, for: .normal)
+            //let image = #imageLiteral(resourceName: "ic_camera_rear")
+            //switchButton.setImage(image, for: .normal)
+            print("back")
         default:
             break
         }
@@ -171,9 +175,12 @@ class CameraViewController: UIViewController {
                 // 저장
                 PHPhotoLibrary.shared().performChanges({
                     PHAssetChangeRequest.creationRequestForAsset(from: image)
-                }) { (success, error) in
-                    print(" --> 이미지 저장 완료했나? \(success)")
-                }
+                }, completionHandler: { (success, error) in
+                    DispatchQueue.main.async {
+                        print(" --> 이미지 저장 완료했나? \(success)")
+                        self.photoLibraryButton.setImage(image, for: .normal)
+                    }
+                })
             } else {
                 // 다시 요청
                 print("--> 권한을 받지 못함")
@@ -196,8 +203,38 @@ extension CameraViewController {
         captureSession.sessionPreset = .photo
         captureSession.beginConfiguration()     // 구성 시작!
         
-        
+        /*
         // Add Video Input
+        do {
+            var defaultVideoDevice: AVCaptureDevice?
+            if let dualCameraDevice = AVCaptureDevice.default(.builtInDualCamera, for: .video, position: .back) {
+                defaultVideoDevice = dualCameraDevice
+            } else if let backCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) {
+                defaultVideoDevice = backCameraDevice
+            } else if let frontCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) {
+                defaultVideoDevice = frontCameraDevice
+            }
+            
+            guard let camera = defaultVideoDevice else {
+                captureSession.commitConfiguration()
+                return
+            }
+            
+            let videoDeviceInput = try AVCaptureDeviceInput(device: camera)
+            
+            if captureSession.canAddInput(videoDeviceInput) {
+                captureSession.addInput(videoDeviceInput)
+                self.videoDeviceInput = videoDeviceInput
+            } else {
+                captureSession.commitConfiguration()
+                return
+            }
+        } catch {
+            captureSession.commitConfiguration()
+            return
+        }
+        */
+        
         
         // camera 디바이스 그 자체다.
         guard let camera = videoDeviceDiscoverySession.devices.first else {
@@ -221,6 +258,7 @@ extension CameraViewController {
             captureSession.commitConfiguration()
             return
         }
+        
         
         // Add photo(video 도 있다.) Output
         

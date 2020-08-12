@@ -17,19 +17,49 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eZV-Vf-ylE" customClass="PreviewView" customModule="PERDU" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Usm-1f-31A">
+                                        <rect key="frame" x="20" y="577" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="DQP-wU-Q4x"/>
+                                            <constraint firstAttribute="height" constant="60" id="cyq-6R-lvY"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="ic_photo_library"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="baz-bq-5Cl">
+                                        <rect key="frame" x="295" y="577" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="pqd-hE-Du1"/>
+                                            <constraint firstAttribute="width" constant="60" id="v1U-eM-qj2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="ic_flip_camera"/>
+                                        <connections>
+                                            <action selector="switchCameraWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tOx-TG-u2L"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="baz-bq-5Cl" secondAttribute="bottom" constant="30" id="GY8-PS-mAY"/>
+                                    <constraint firstAttribute="trailing" secondItem="baz-bq-5Cl" secondAttribute="trailing" constant="20" id="fAe-bX-90L"/>
+                                    <constraint firstItem="Usm-1f-31A" firstAttribute="leading" secondItem="eZV-Vf-ylE" secondAttribute="leading" constant="20" id="qeW-hS-HeS"/>
+                                    <constraint firstAttribute="bottom" secondItem="Usm-1f-31A" secondAttribute="bottom" constant="30" id="tfP-a4-p0b"/>
+                                </constraints>
                             </view>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QD6-pK-5NS">
-                                <rect key="frame" x="145" y="552" width="85" height="85"/>
+                                <rect key="frame" x="150" y="562" width="75" height="75"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="9rf-Sl-oMo">
-                                    <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gf7-eW-Z4T">
-                                            <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="IhN-Ye-BVN">
-                                                <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </view>
                                             <vibrancyEffect>
@@ -41,52 +71,27 @@
                                 <blurEffect style="light"/>
                             </visualEffectView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXj-xX-6pd">
-                                <rect key="frame" x="155" y="562" width="65" height="65"/>
+                                <rect key="frame" x="160" y="572" width="55" height="55"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="65" id="FJa-e2-OYk"/>
-                                    <constraint firstAttribute="width" constant="65" id="rms-mR-szU"/>
+                                    <constraint firstAttribute="height" constant="55" id="FJa-e2-OYk"/>
+                                    <constraint firstAttribute="width" constant="55" id="rms-mR-szU"/>
                                 </constraints>
                                 <connections>
                                     <action selector="capturePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p1f-Zn-SWE"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="baz-bq-5Cl">
-                                <rect key="frame" x="310" y="20" width="45" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="45" id="8AQ-mg-XDz"/>
-                                    <constraint firstAttribute="height" constant="45" id="Z0p-Lf-CJ1"/>
-                                </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" image="ic_camera_rear"/>
-                                <connections>
-                                    <action selector="switchCameraWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tOx-TG-u2L"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Usm-1f-31A">
-                                <rect key="frame" x="65" y="574.5" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="89A-6t-sEx"/>
-                                    <constraint firstAttribute="height" constant="40" id="8i1-md-b03"/>
-                                </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" image="ic_photo_camera"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="QD6-pK-5NS" firstAttribute="centerY" secondItem="gXj-xX-6pd" secondAttribute="centerY" id="1YH-gY-Oma"/>
                             <constraint firstItem="QD6-pK-5NS" firstAttribute="centerX" secondItem="gXj-xX-6pd" secondAttribute="centerX" id="7pS-Hs-TLE"/>
-                            <constraint firstItem="Usm-1f-31A" firstAttribute="centerY" secondItem="gXj-xX-6pd" secondAttribute="centerY" id="ITL-Oc-oad"/>
                             <constraint firstItem="uRV-so-wbd" firstAttribute="bottom" secondItem="gXj-xX-6pd" secondAttribute="bottom" constant="40" id="KbN-Rx-uNr"/>
                             <constraint firstItem="eZV-Vf-ylE" firstAttribute="top" secondItem="Cq9-2s-fm1" secondAttribute="top" id="ahg-2G-6OC"/>
-                            <constraint firstItem="uRV-so-wbd" firstAttribute="trailing" secondItem="baz-bq-5Cl" secondAttribute="trailing" constant="20" id="b2a-df-jw5"/>
                             <constraint firstItem="eZV-Vf-ylE" firstAttribute="leading" secondItem="Cq9-2s-fm1" secondAttribute="leading" id="fje-lC-I5Y"/>
                             <constraint firstAttribute="trailing" secondItem="eZV-Vf-ylE" secondAttribute="trailing" id="g4W-aT-Mf2"/>
                             <constraint firstAttribute="bottom" secondItem="eZV-Vf-ylE" secondAttribute="bottom" id="hkP-0D-mF4"/>
-                            <constraint firstItem="gXj-xX-6pd" firstAttribute="leading" secondItem="Usm-1f-31A" secondAttribute="trailing" constant="50" id="j7B-eZ-b8W"/>
                             <constraint firstItem="gXj-xX-6pd" firstAttribute="centerX" secondItem="uRV-so-wbd" secondAttribute="centerX" id="lqS-Nw-zcM"/>
-                            <constraint firstItem="baz-bq-5Cl" firstAttribute="top" secondItem="uRV-so-wbd" secondAttribute="top" constant="20" id="uFj-5M-beZ"/>
                             <constraint firstItem="QD6-pK-5NS" firstAttribute="height" secondItem="gXj-xX-6pd" secondAttribute="height" constant="20" id="uyh-YY-9Ud"/>
                             <constraint firstItem="QD6-pK-5NS" firstAttribute="width" secondItem="gXj-xX-6pd" secondAttribute="width" constant="20" id="vLA-7n-c0j"/>
                         </constraints>
@@ -106,7 +111,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_camera_rear" width="24" height="24"/>
-        <image name="ic_photo_camera" width="24" height="24"/>
+        <image name="ic_flip_camera" width="36" height="36"/>
+        <image name="ic_photo_library" width="36" height="36"/>
     </resources>
 </document>
