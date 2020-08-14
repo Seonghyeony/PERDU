@@ -18,17 +18,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eZV-Vf-ylE" customClass="PreviewView" customModule="PERDU" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Usm-1f-31A">
-                                        <rect key="frame" x="20" y="577" width="60" height="60"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="DQP-wU-Q4x"/>
-                                            <constraint firstAttribute="height" constant="60" id="cyq-6R-lvY"/>
-                                        </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="ic_photo_library"/>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="baz-bq-5Cl">
-                                        <rect key="frame" x="295" y="577" width="60" height="60"/>
+                                        <rect key="frame" x="295" y="592" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="pqd-hE-Du1"/>
                                             <constraint firstAttribute="width" constant="60" id="v1U-eM-qj2"/>
@@ -40,26 +31,49 @@
                                             <action selector="switchCameraWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tOx-TG-u2L"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Usm-1f-31A">
+                                        <rect key="frame" x="25" y="597" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="DQP-wU-Q4x"/>
+                                            <constraint firstAttribute="height" constant="50" id="cyq-6R-lvY"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="ic_photo_library"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xq0-Ne-9he">
+                                        <rect key="frame" x="20" y="20" width="30" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="4xG-CM-r4g"/>
+                                            <constraint firstAttribute="width" constant="30" id="UC8-t5-Ok1"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="Flash Off Icon"/>
+                                        <connections>
+                                            <action selector="toggleFlash:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hgU-TY-EYd"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="baz-bq-5Cl" secondAttribute="bottom" constant="30" id="GY8-PS-mAY"/>
+                                    <constraint firstAttribute="bottom" secondItem="baz-bq-5Cl" secondAttribute="bottom" constant="15" id="GY8-PS-mAY"/>
+                                    <constraint firstItem="xq0-Ne-9he" firstAttribute="top" secondItem="eZV-Vf-ylE" secondAttribute="top" constant="20" id="IIf-l0-p2l"/>
                                     <constraint firstAttribute="trailing" secondItem="baz-bq-5Cl" secondAttribute="trailing" constant="20" id="fAe-bX-90L"/>
-                                    <constraint firstItem="Usm-1f-31A" firstAttribute="leading" secondItem="eZV-Vf-ylE" secondAttribute="leading" constant="20" id="qeW-hS-HeS"/>
-                                    <constraint firstAttribute="bottom" secondItem="Usm-1f-31A" secondAttribute="bottom" constant="30" id="tfP-a4-p0b"/>
+                                    <constraint firstItem="xq0-Ne-9he" firstAttribute="leading" secondItem="eZV-Vf-ylE" secondAttribute="leading" constant="20" id="lkr-sI-cjq"/>
+                                    <constraint firstItem="Usm-1f-31A" firstAttribute="leading" secondItem="eZV-Vf-ylE" secondAttribute="leading" constant="25" id="qeW-hS-HeS"/>
+                                    <constraint firstAttribute="bottom" secondItem="Usm-1f-31A" secondAttribute="bottom" constant="20" id="tfP-a4-p0b"/>
                                 </constraints>
                             </view>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QD6-pK-5NS">
-                                <rect key="frame" x="150" y="562" width="75" height="75"/>
+                                <rect key="frame" x="152.5" y="582" width="70" height="70"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="9rf-Sl-oMo">
-                                    <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gf7-eW-Z4T">
-                                            <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="IhN-Ye-BVN">
-                                                <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </view>
                                             <vibrancyEffect>
@@ -71,11 +85,11 @@
                                 <blurEffect style="light"/>
                             </visualEffectView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXj-xX-6pd">
-                                <rect key="frame" x="160" y="572" width="55" height="55"/>
+                                <rect key="frame" x="162.5" y="592" width="50" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="FJa-e2-OYk"/>
-                                    <constraint firstAttribute="width" constant="55" id="rms-mR-szU"/>
+                                    <constraint firstAttribute="height" constant="50" id="FJa-e2-OYk"/>
+                                    <constraint firstAttribute="width" constant="50" id="rms-mR-szU"/>
                                 </constraints>
                                 <connections>
                                     <action selector="capturePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p1f-Zn-SWE"/>
@@ -86,7 +100,7 @@
                         <constraints>
                             <constraint firstItem="QD6-pK-5NS" firstAttribute="centerY" secondItem="gXj-xX-6pd" secondAttribute="centerY" id="1YH-gY-Oma"/>
                             <constraint firstItem="QD6-pK-5NS" firstAttribute="centerX" secondItem="gXj-xX-6pd" secondAttribute="centerX" id="7pS-Hs-TLE"/>
-                            <constraint firstItem="uRV-so-wbd" firstAttribute="bottom" secondItem="gXj-xX-6pd" secondAttribute="bottom" constant="40" id="KbN-Rx-uNr"/>
+                            <constraint firstItem="uRV-so-wbd" firstAttribute="bottom" secondItem="gXj-xX-6pd" secondAttribute="bottom" constant="25" id="KbN-Rx-uNr"/>
                             <constraint firstItem="eZV-Vf-ylE" firstAttribute="top" secondItem="Cq9-2s-fm1" secondAttribute="top" id="ahg-2G-6OC"/>
                             <constraint firstItem="eZV-Vf-ylE" firstAttribute="leading" secondItem="Cq9-2s-fm1" secondAttribute="leading" id="fje-lC-I5Y"/>
                             <constraint firstAttribute="trailing" secondItem="eZV-Vf-ylE" secondAttribute="trailing" id="g4W-aT-Mf2"/>
@@ -103,6 +117,7 @@
                         <outlet property="photoLibraryButton" destination="Usm-1f-31A" id="vz4-Va-xda"/>
                         <outlet property="previewView" destination="eZV-Vf-ylE" id="nJf-yR-WeG"/>
                         <outlet property="switchButton" destination="baz-bq-5Cl" id="wGT-xj-uRd"/>
+                        <outlet property="toggleFlashButton" destination="xq0-Ne-9he" id="37s-WE-UJk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -111,6 +126,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Flash Off Icon" width="24" height="24"/>
         <image name="ic_flip_camera" width="36" height="36"/>
         <image name="ic_photo_library" width="36" height="36"/>
     </resources>

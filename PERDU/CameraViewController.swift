@@ -20,10 +20,13 @@ class CameraViewController: UIViewController {
 //    - AVCaptureDevice DiscoverySession  // 내 Device에서 카메라를 가져올 때 찾아주거나 도와주는 것들.
     // 추가 구성.
     let captureSession = AVCaptureSession()
-    var videoDeviceInput: AVCaptureDeviceInput!
+    var videoDeviceInput: AVCaptureDeviceInput!     // var로 선언 이유: front, rear 바뀔 수 있어서.
     let photoOutput = AVCapturePhotoOutput()
     
+    // DispatchQueue: 애플리케이션이 블록 객체 형태로 작업을 제출할 수있는 FIFO 큐입니다. 디스패치 대기열은 작업을 직렬 또는 동시에 실행합니다.
     let sessionQueue = DispatchQueue(label: "session Queue")
+    
+    // AVCaptureDevice.DiscoverySession: 카메라 장치를 선택할 수 있는 클래스(방법) 중 하나.
     // deviceTypes: 카메라가 2개, 3개 이런 것들.
     // position: 전면인지 후면인지.
     let videoDeviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInDualCamera, .builtInWideAngleCamera, .builtInTrueDepthCamera], mediaType: .video, position: .unspecified)
@@ -35,6 +38,9 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var captureButton: UIButton!             // 버튼
     @IBOutlet weak var blurBGView: UIVisualEffectView!
     @IBOutlet weak var switchButton: UIButton!              // 토글 스위치
+    @IBOutlet weak var toggleFlashButton: UIButton!         // 토글 플래쉬
+    // 플래시 기능
+    var flashMode = AVCaptureDevice.FlashMode.off
     
     override var prefersStatusBarHidden: Bool {
         return true
@@ -45,9 +51,11 @@ class CameraViewController: UIViewController {
         super.viewDidLoad()
         // TODO: 초기 설정 2
         
-        previewView.session = captureSession    // previewView와 AVCaptureSession 연결
+        // *** previewView와 AVCaptureSession 연결
+        previewView.session = captureSession
         
         // 여기서 AVCaptureSession 구현.
+        // async: 즉시 실행.
         sessionQueue.async {
             self.setupSession()     // 세션 구성
             self.startSession()     // 세션 시작
@@ -115,8 +123,7 @@ class CameraViewController: UIViewController {
                     self.captureSession.commitConfiguration()
                     
                     // 카메라 토글 버튼 업데이트
-                    // UI 업데이트는 main queue에서 한다.
-                    // UI 관련해서는 main에서 해야함.
+                    // UI 관련 작업은 main queue에서 한다.
                     DispatchQueue.main.async {
                         self.updateSwitchCameraIcon(position: preferredPosition)
                     }
@@ -146,6 +153,21 @@ class CameraViewController: UIViewController {
         
     }
     
+    @IBAction func toggleFlash(_ sender: UIButton) {
+        
+        sessionQueue.async {
+            DispatchQueue.main.async {
+                if self.flashMode == .on {
+                    self.flashMode = .off
+                    self.toggleFlashButton.setImage(#imageLiteral(resourceName: "Flash Off Icon"), for: .normal)
+                } else {
+                    self.flashMode = .on
+                    self.toggleFlashButton.setImage(#imageLiteral(resourceName: "Flash On Icon"), for: .normal)
+                }
+            }
+        }
+    }
+    
     @IBAction func capturePhoto(_ sender: UIButton) {
         // TODO: photoOutput의 capturePhoto 메소드
         // orientation - 사진을 찍었는데 막 돌아가있을 수도 있기 때문.
@@ -161,6 +183,16 @@ class CameraViewController: UIViewController {
              사진을 찍는다.
              */
             let setting = AVCapturePhotoSettings()
+            
+            // 플래쉬 모드
+            if self.videoDeviceInput.device.isFlashAvailable {
+                if self.flashMode == .on {
+                    setting.flashMode = .on
+                } else {
+                    setting.flashMode = .off
+                }
+            }
+            
             self.photoOutput.capturePhoto(with: setting, delegate: self)
         }
     }
@@ -187,6 +219,8 @@ class CameraViewController: UIViewController {
             }
         }
     }
+    
+    
 }
 
 extension CameraViewController {
@@ -261,7 +295,6 @@ extension CameraViewController {
         
         
         // Add photo(video 도 있다.) Output
-        
         // photoOutput에다가 photo를 어떤 형식, 타입으로 저장할 지.
         photoOutput.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])], completionHandler: nil)
         
